@@ -1,3 +1,21 @@
 /*
     You can add your own custom styles here.
 */
+
+/* Show dark logo when in dark mode */
+[data-scheme="dark"] .dark-logo {
+  display: block !important;
+}
+
+[data-scheme="dark"] .light-logo {
+  display: none !important;
+}
+
+/* Show light logo when in light mode */
+[data-scheme="light"] .light-logo {
+  display: block !important;
+}
+
+[data-scheme="light"] .dark-logo {
+  display: none !important;
+}

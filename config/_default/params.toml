@@ -19,7 +19,8 @@ subtitle = "Shattering boundaries together"
 [sidebar.avatar]
 enabled = true
 local = true
-src = "img/logo.png"
+src = "img/brother300.png"
+src_dark = "img/default300.png"
 
 [article]
 headingAnchor = false

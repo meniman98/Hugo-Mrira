@@ -8,26 +8,31 @@
     <header>
         {{ with .Site.Params.sidebar.avatar }}
             {{ if (default true .enabled) }}
-            <figure class="site-avatar">
-                <a href="{{ .Site.BaseURL | relLangURL }}">
+        <figure class="site-avatar">
+            <a href="{{ .Site.BaseURL | relLangURL }}">
                 {{ if not .local }}
-                    <img src="{{ .src }}" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                <img src="{{ .src }}" width="300" height="300" class="site-logo light-logo" loading="lazy" alt="Avatar">
+                <img src="{{ .src_dark }}" width="300" height="300" class="site-logo dark-logo" loading="lazy" alt="Avatar" style="display: none;">
                 {{ else }}
-                    {{ $avatar := resources.Get (.src) }}
-                    
-                    {{ if $avatar }}
-                        {{ $avatarResized := $avatar.Resize "300x" }}
-                        <img src="{{ $avatarResized.RelPermalink }}" width="{{ $avatarResized.Width }}"
-                            height="{{ $avatarResized.Height }}" class="site-logo" loading="lazy" alt="Avatar">
-                    {{ else }}
-                        {{ errorf "Failed loading avatar from %q" . }}
-                    {{ end }}
+                {{ $avatar := resources.Get (.src) }}
+                {{ $avatarDark := resources.Get (.src_dark) }}
+
+                {{ if and $avatar $avatarDark }}
+                {{ $avatarResized := $avatar.Resize "300x" }}
+                {{ $avatarDarkResized := $avatarDark.Resize "300x" }}
+                <img src="{{ $avatarResized.RelPermalink }}" width="{{ $avatarResized.Width }}"
+                     height="{{ $avatarResized.Height }}" class="site-logo light-logo" loading="lazy" alt="Avatar">
+                <img src="{{ $avatarDarkResized.RelPermalink }}" width="{{ $avatarDarkResized.Width }}"
+                     height="{{ $avatarDarkResized.Height }}" class="site-logo dark-logo" loading="lazy" alt="Avatar" style="display: none;">
+                {{ else }}
+                {{ errorf "Failed loading avatar from %q" . }}
                 {{ end }}
-                </a>
-                {{ with $.Site.Params.sidebar.emoji }}
-                    <span class="emoji">{{ . }}</span>
                 {{ end }}
-            </figure>
+            </a>
+            {{ with $.Site.Params.sidebar.emoji }}
+            <span class="emoji">{{ . }}</span>
+            {{ end }}
+        </figure>
             {{ end }}
         {{ end }}
         
