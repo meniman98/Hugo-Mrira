@@ -4,13 +4,243 @@
     {{ $filtered := ($pages | intersect $notHidden) }}
     {{ $pag := .Paginate ($filtered) }}
 
-    <section class="article-list">
-        {{ range $index, $element := $pag.Pages }}
-            {{ partial "article-list/default" . }}
-        {{ end }}
-    </section>
 
-    {{- partial "pagination.html" . -}}
+
+
+
+    <style>
+
+        /* WINDOWS 98 WINDOW STYLING */
+        .win98-container {
+            width: 100%;
+            margin: 0;
+            padding: 2rem 0; /* Keep vertical spacing */
+            background: #008080;
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .win98-container .win98-window {
+            width: 90%;
+            max-width: 1000px; /* Same as before */
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        /* Reset Stack theme styles within our container */
+        .win98-container * {
+            font-family: 'Courier New', monospace !important;
+        }
+
+        /* Background only for our container */
+        .win98-container {
+            background: #008080;
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            align-items: center;
+        }
+
+        .win98-window {
+            width: auto;
+            margin: 2rem auto;
+            max-width: 1000px;
+            background: #c0c0c0; /* Win98 gray */
+            border: 2px solid;
+            border-color: #dfdfdf #000000 #000000 #dfdfdf; /* 3D border effect */
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .win98-titlebar {
+            background: linear-gradient(90deg, #000080, #1084d0); /* Win98 titlebar blue */
+            color: white;
+            padding: 4px 8px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .win98-titlebar-controls {
+            display: flex;
+        }
+
+        .win98-btn {
+            width: 16px;
+            height: 14px;
+            margin-left: 2px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
+            font-size: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: default; /* Non-clickable */
+        }
+
+        .win98-btn.close {
+            font-weight: bold;
+        }
+
+        .win98-content {
+            padding: 8px;
+            background: black;
+            color: white;
+            min-height: 70vh;
+        }
+
+        /* TERMINAL STYLING (FROM EARLIER) */
+        section {
+            padding: 2rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        h1, h2, h3 {
+            font-weight: normal;
+            margin: 0 0 1.5rem 0;
+        }
+
+        h1.win98 {
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form button {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 0.8rem;
+            font-family: 'Courier New', monospace;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form button:hover {
+            background: white;
+            color: black;
+        }
+
+        .cli-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cli-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .cli-list li::before {
+            content: "> ";
+            position: absolute;
+            left: 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            border: 1px solid white;
+        }
+
+        .collaborations {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<div class="win98-container">
+<!-- WINDOWS 98 WINDOW FRAME -->
+<div class="win98-window">
+    <!-- TITLEBAR -->
+    <div class="win98-titlebar">
+        <span>DEV_CONSULTANCY.exe</span>
+        <div class="win98-titlebar-controls">
+            <div class="win98-btn minimize">_</div>
+            <div class="win98-btn maximize">□</div>
+            <div class="win98-btn close">X</div>
+        </div>
+    </div>
+
+    <!-- TERMINAL CONTENT -->
+    <div class="win98-content">
+        <!-- SECTION 1: INTRO + CONTACT -->
+        <section class="intro">
+            <h1 class="win98">$ ./welcome.sh</h1>
+            <p>> Disruptive software consultancy for founders who break rules.</p>
+
+            <div class="contact-form">
+                <h2>$ ./contact.sh</h2>
+                <form>
+                    <input type="text" placeholder="NAME" required>
+                    <input type="email" placeholder="EMAIL" required>
+                    <textarea placeholder="MESSAGE" rows="4" required></textarea>
+                    <button type="submit">$ ./send</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECTION 2: COLLABORATIONS -->
+        <section>
+            <h2>$ ./collaborations.sh</h2>
+            <div class="collaborations">
+                <div class="marquee">
+                    > STARTUP_X > TECH_Y > F500_COMPANY > UNICORN_STUDIO > STARTUP_X > TECH_Y > F500_COMPANY > UNICORN_STUDIO
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: WHAT MAKES US UNIQUE -->
+        <section>
+            <h2>$ ./why_us.sh</h2>
+            <ul class="cli-list">
+                <li>No bullshit. Just scalable, future-proof code.</li>
+                <li>We ship MVPs in days, not months.</li>
+                <li>Ex-startup founders. We speak your language.</li>
+                <li>Your competitors will hate us.</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 4: PORTFOLIO -->
+        <section>
+            <h2>$ ./portfolio.sh</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=APP_1" alt="MVP Screenshot">
+                    <p>> Fintech disruptor (2023)</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=APP_2" alt="MVP Screenshot">
+                    <p>> AI-powered recruiting (2024)</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</div>
+
+
 
 {{ end }}
 
