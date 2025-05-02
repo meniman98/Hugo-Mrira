@@ -6,7 +6,20 @@
 
 
 
+<script>
+    // Update clock in real-time
+    function updateClock() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const displayHours = hours % 12 || 12;
+        document.getElementById('win98-clock').textContent = `${displayHours}:${minutes} ${ampm}`;
+    }
 
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
 
     <style>
 
@@ -42,9 +55,8 @@
         }
 
         .win98-window {
-            width: auto;
-            margin: 2rem auto;
-            max-width: 1000px;
+            width: 700px;
+            margin: 20px auto; /* Centered with some space */
             background: #c0c0c0; /* Win98 gray */
             border: 2px solid;
             border-color: #dfdfdf #000000 #000000 #dfdfdf; /* 3D border effect */
@@ -88,6 +100,71 @@
             background: black;
             color: white;
             min-height: 70vh;
+        }
+
+        .win98-taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #c0c0c0;
+            border-top: 2px solid #dfdfdf;
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+            z-index: 1000;
+        }
+
+        .start-button {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
+            padding: 2px 6px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        .start-button img {
+            margin-right: 4px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .taskbar-programs {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .taskbar-item {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #808080 #dfdfdf #dfdfdf #808080;
+            padding: 2px 8px;
+            margin-right: 4px;
+            font-size: 12px;
+        }
+
+        .taskbar-item.active {
+            border-color: #808080 #ffffff #ffffff #808080;
+        }
+
+        .taskbar-clock {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #808080 #dfdfdf #dfdfdf #808080;
+            padding: 2px 6px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .taskbar-clock img {
+            margin-left: 6px;
+            width: 16px;
+            height: 16px;
         }
 
         /* TERMINAL STYLING (FROM EARLIER) */
@@ -169,13 +246,13 @@
             100% { transform: translateX(-50%); }
         }
     </style>
-</head>
 <div class="win98-container">
+
 <!-- WINDOWS 98 WINDOW FRAME -->
-<div class="win98-window">
+    <div class="win98-window">
     <!-- TITLEBAR -->
     <div class="win98-titlebar">
-        <span>DEV_CONSULTANCY.exe</span>
+        <span>Mrira.exe</span>
         <div class="win98-titlebar-controls">
             <div class="win98-btn minimize">_</div>
             <div class="win98-btn maximize">□</div>
@@ -184,7 +261,7 @@
     </div>
 
     <!-- TERMINAL CONTENT -->
-    <div class="win98-content">
+    <div class="win98-content" style="height: 400px; overflow-y: auto;">
         <!-- SECTION 1: INTRO + CONTACT -->
         <section class="intro">
             <h1 class="win98">$ ./welcome.sh</h1>
@@ -237,7 +314,25 @@
             </div>
         </section>
     </div>
+
 </div>
+
+    <div class="win98-taskbar">
+        <div class="start-button">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEEjIZB5xJGwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAJklEQVQ4y2NgGAWjYBSMAlIAI4Mx9XwADcQ/SPz/PwMDw38GAAY2BB5vQrLZAAAAAElFTkSuQmCC" alt="Windows Logo">
+            Start
+        </div>
+        <div class="taskbar-programs">
+            <div class="taskbar-item active">Mrira.exe</div>
+            <div class="taskbar-item">Document Explorer</div>
+            <div class="taskbar-item">Internet Explorer</div>
+        </div>
+        <div class="taskbar-clock">
+            <span id="win98-clock">4:25 PM</span>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEEjIZB5xJGwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAPklEQVQ4y2NgGAWjYBSMAlIAI4Mx9XwADcQ/SPz/PwMDw38GAAY2BB5vQrLZAAX/0Qz5j2bIfzRD/qMZ8h/NkP8A1h8EHm9CstkAAAAASUVORK5CYII=" alt="Volume">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEEjIZB5xJGwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAJklEQVQ4y2NgGAWjYBSMAlIAI4Mx9XwADcQ/SPz/PwMDw38GAAY2BB5vQrLZAAAAAElFTkSuQmCC" alt="Windows Logo Small">
+        </div>
+    </div>
 </div>
 
 
