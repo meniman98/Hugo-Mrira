@@ -25,9 +25,11 @@
 
         /* WINDOWS 98 WINDOW STYLING */
         .win98-container {
+            position: relative;
             width: 100%;
             margin: 0;
             padding: 2rem 0; /* Keep vertical spacing */
+            padding-bottom: 20px; /* Make space for the taskbar */
             background: #008080;
             min-height: calc(100vh - 4rem);
             display: flex;
@@ -103,7 +105,7 @@
         }
 
         .win98-taskbar {
-            position: fixed;
+            position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
@@ -114,6 +116,8 @@
             align-items: center;
             padding: 0 4px;
             z-index: 1000;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .start-button {
@@ -319,7 +323,7 @@
 
     <div class="win98-taskbar">
         <div class="start-button">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEEjIZB5xJGwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAJklEQVQ4y2NgGAWjYBSMAlIAI4Mx9XwADcQ/SPz/PwMDw38GAAY2BB5vQrLZAAAAAElFTkSuQmCC" alt="Windows Logo">
+            <img src="../static/images/windows98-logo.png">
             Start
         </div>
         <div class="taskbar-programs">
