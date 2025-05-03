@@ -27,267 +27,261 @@
     updateClock();
 </script>
 
-    <style>
 
-        /* WINDOWS 98 WINDOW STYLING */
-        .win98-container {
-            position: relative;
-            width: 100%;
-            margin: 0;
-            padding: 2rem 0; /* Keep vertical spacing */
-            padding-bottom: 20px; /* Make space for the taskbar */
-            background: #008080;
-            min-height: calc(100vh - 4rem);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<style>
 
-        .win98-container .win98-window {
-            width: 90%;
-            max-width: 1000px; /* Same as before */
-            margin: 0 auto; /* Center horizontally */
-        }
+    /* WINDOWS 98 THEME STYLES */
+    .win98-container {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        padding: 2rem 0 20px; /* Combined padding declaration */
+        background: #008080;
+        min-height: calc(100vh - 6rem);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        /* Reset Stack theme styles within our container */
-        .win98-container * {
-            font-family: 'Courier New', monospace !important;
-        }
+    /* Reset Stack theme styles within our container */
+    .win98-container * {
+        font-family: 'Courier New', monospace !important;
+    }
 
-        /* Background only for our container */
-        .win98-container {
-            background: #008080;
-            min-height: calc(100vh - 4rem);
-            display: flex;
-            align-items: center;
-        }
+    /* Window Styles */
+    .win98-window {
+        width: 80%;
+        margin: 0 auto;
+        background: #c0c0c0;
+        border: 2px solid;
+        border-color: #dfdfdf #000000 #000000 #dfdfdf;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
 
-        .win98-window {
-            width: 700px;
-            margin: 20px auto; /* Centered with some space */
-            background: #c0c0c0; /* Win98 gray */
-            border: 2px solid;
-            border-color: #dfdfdf #000000 #000000 #dfdfdf; /* 3D border effect */
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        }
+    /* Titlebar Styles */
+    .win98-titlebar {
+        background: linear-gradient(90deg, #000080, #1084d0);
+        color: white;
+        padding: 4px 8px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .win98-titlebar {
-            background: linear-gradient(90deg, #000080, #1084d0); /* Win98 titlebar blue */
-            color: white;
-            padding: 4px 8px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .win98-titlebar-controls {
+        display: flex;
+    }
 
-        .win98-titlebar-controls {
-            display: flex;
-        }
+    .win98-btn {
+        width: 16px;
+        height: 14px;
+        margin-left: 2px;
+        background: #c0c0c0;
+        border: 2px solid;
+        border-color: #dfdfdf #808080 #808080 #dfdfdf;
+        font-size: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+    }
 
-        .win98-btn {
-            width: 16px;
-            height: 14px;
-            margin-left: 2px;
-            background: #c0c0c0;
-            border: 2px solid;
-            border-color: #dfdfdf #808080 #808080 #dfdfdf;
-            font-size: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: default; /* Non-clickable */
-        }
+    .win98-btn.close {
+        font-weight: bold;
+    }
 
-        .win98-btn.close {
-            font-weight: bold;
-        }
+    /* Content Area */
+    .win98-content {
+        padding: 8px;
+        background: black;
+        color: white;
+        min-height: 70vh;
+    }
 
-        .win98-content {
-            padding: 8px;
-            background: black;
-            color: white;
-            min-height: 70vh;
-        }
+    /* Taskbar Styles */
+    .win98-taskbar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: #c0c0c0;
+        border-top: 2px solid #dfdfdf;
+        display: flex;
+        align-items: center;
+        padding: 0 4px;
+        z-index: 1000;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
-        .win98-taskbar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 30px;
-            background: #c0c0c0;
-            border-top: 2px solid #dfdfdf;
-            display: flex;
-            align-items: center;
-            padding: 0 4px;
-            z-index: 1000;
-            width: 100%;
-            box-sizing: border-box;
-        }
+    .start-button {
+        background: #c0c0c0;
+        border: 2px solid;
+        border-color: #dfdfdf #808080 #808080 #dfdfdf;
+        padding: 2px 6px;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        margin-right: 4px;
+    }
 
-        .start-button {
-            background: #c0c0c0;
-            border: 2px solid;
-            border-color: #dfdfdf #808080 #808080 #dfdfdf;
-            padding: 2px 6px;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            margin-right: 4px;
-        }
+    .start-button img {
+        margin-right: 4px;
+        width: 16px;
+        height: 16px;
+    }
 
-        .start-button img {
-            margin-right: 4px;
-            width: 16px;
-            height: 16px;
-        }
+    .taskbar-programs {
+        display: flex;
+        flex-grow: 1;
+    }
 
-        .taskbar-programs {
-            display: flex;
-            flex-grow: 1;
-        }
+    .taskbar-item {
+        background: #c0c0c0;
+        border: 2px solid;
+        border-color: #808080 #dfdfdf #dfdfdf #808080;
+        padding: 2px 8px;
+        margin-right: 4px;
+        font-size: 12px;
+    }
 
-        .taskbar-item {
-            background: #c0c0c0;
-            border: 2px solid;
-            border-color: #808080 #dfdfdf #dfdfdf #808080;
-            padding: 2px 8px;
-            margin-right: 4px;
-            font-size: 12px;
-        }
+    .taskbar-item.active {
+        border-color: #808080 #ffffff #ffffff #808080;
+    }
 
-        .taskbar-item.active {
-            border-color: #808080 #ffffff #ffffff #808080;
-        }
+    /* Clock Styles */
+    .taskbar-clock {
+        background: #c0c0c0;
+        border: 2px solid;
+        border-color: #808080 #dfdfdf #dfdfdf #808080;
+        padding: 2px 6px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
 
-        .taskbar-clock {
-            background: #c0c0c0;
-            border: 2px solid;
-            border-color: #808080 #dfdfdf #dfdfdf #808080;
-            padding: 2px 6px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+    #win98-clock {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+        min-width: 60px;
+        margin-left: 2px;
+    }
 
-        .taskbar-clock img {
-            margin-left: 6px;
-            width: 16px;
-            height: 16px;
-        }
+    .clock-icons {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
 
-        /* Clock styling */
-        #win98-clock {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-            min-width: 60px; /* Prevent width jumping during time updates */
-            margin-left: 2px; /* Small gap after icons */
-        }
-        .clock-icons {
-            display: flex;
-            align-items: center;
-            gap: 4px; /* Space between icons */
-        }
+    .clock-icons img,
+    .taskbar-clock img,
+    .start-button img {
+        width: 16px;
+        height: 16px;
+    }
 
-        .clock-icons img {
-            width: 16px;
-            height: 16px;
-            margin: 0; /* Remove previous margin */
-        }
+    .clock-time {
+        font-weight: bold;
+        text-align: right;
+    }
 
-        .clock-time {
-            font-weight: bold;
-            text-align: right;
-        }
+    .clock-date {
+        color: #000;
+        text-align: right;
+        font-size: 11px;
+    }
 
-        .clock-date {
-            color: #000;
-            text-align: right;
-            font-size: 11px; /* Slightly smaller than time */
-        }
+    /* CONTENT STYLES */
+    .win98-content section {
+        padding: 2rem 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    }
 
-        /* TERMINAL STYLING (FROM EARLIER) */
-        section {
-            padding: 2rem 1rem;
-            max-width: 900px;
-            margin: 0 auto;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
-        }
+    .win98-content h1,
+    .win98-content h2,
+    .win98-content h3 {
+        font-weight: normal;
+        margin: 0 0 1.5rem 0;
+    }
 
-        h1, h2, h3 {
-            font-weight: normal;
-            margin: 0 0 1.5rem 0;
-        }
+    .win98-content h1.win98 {
+        font-size: 2rem;
+        position: relative;
+        display: inline-block;
+    }
 
-        h1.win98 {
-            font-size: 2rem;
-            position: relative;
-            display: inline-block;
-        }
+    /* Form Styles */
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        padding: 0.8rem;
+        font-family: 'Courier New', monospace;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
 
-        .contact-form input,
-        .contact-form textarea,
-        .contact-form button {
-            background: transparent;
-            border: 1px solid white;
-            color: white;
-            padding: 0.8rem;
-            font-family: 'Courier New', monospace;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
+    .contact-form button:hover {
+        background: white;
+        color: black;
+    }
 
-        .contact-form button:hover {
-            background: white;
-            color: black;
-        }
+    /* List Styles */
+    .cli-list {
+        list-style: none;
+        padding: 0;
+    }
 
-        .cli-list {
-            list-style: none;
-            padding: 0;
-        }
+    .cli-list li {
+        margin-bottom: 1rem;
+        position: relative;
+        padding-left: 2rem;
+    }
 
-        .cli-list li {
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 2rem;
-        }
+    .cli-list li::before {
+        content: "> ";
+        position: absolute;
+        left: 0;
+    }
 
-        .cli-list li::before {
-            content: "> ";
-            position: absolute;
-            left: 0;
-        }
+    /* Portfolio Grid */
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
 
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
+    .portfolio-item img {
+        width: 100%;
+        border: 1px solid white;
+    }
 
-        .portfolio-item img {
-            width: 100%;
-            border: 1px solid white;
-        }
+    /* Marquee Styles */
+    .collaborations {
+        overflow: hidden;
+        white-space: nowrap;
+    }
 
-        .collaborations {
-            overflow: hidden;
-            white-space: nowrap;
-        }
+    .marquee {
+        display: inline-block;
+        animation: marquee 20s linear infinite;
+    }
 
-        .marquee {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
-        }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
 
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-    </style>
+</style>
+
 <div class="win98-container">
 
 <!-- WINDOWS 98 WINDOW FRAME -->
