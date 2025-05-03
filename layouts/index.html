@@ -7,14 +7,20 @@
 
 
 <script>
-    // Update clock in real-time
     function updateClock() {
         const now = new Date();
         const hours = now.getHours();
         const minutes = now.getMinutes().toString().padStart(2, '0');
         const ampm = hours >= 12 ? 'PM' : 'AM';
         const displayHours = hours % 12 || 12;
-        document.getElementById('win98-clock').textContent = `${displayHours}:${minutes} ${ampm}`;
+
+        // Get date components
+        const month = now.getMonth() + 1;
+        const day = now.getDate();
+        const year = now.getFullYear();
+
+        document.querySelector('.clock-time').textContent = `${displayHours}:${minutes} ${ampm}`;
+        document.querySelector('.clock-date').textContent = `${day}/${month}/${year}`;
     }
 
     setInterval(updateClock, 1000);
@@ -163,12 +169,44 @@
             font-size: 12px;
             display: flex;
             align-items: center;
+            gap: 6px;
         }
 
         .taskbar-clock img {
             margin-left: 6px;
             width: 16px;
             height: 16px;
+        }
+
+        /* Clock styling */
+        #win98-clock {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            min-width: 60px; /* Prevent width jumping during time updates */
+            margin-left: 2px; /* Small gap after icons */
+        }
+        .clock-icons {
+            display: flex;
+            align-items: center;
+            gap: 4px; /* Space between icons */
+        }
+
+        .clock-icons img {
+            width: 16px;
+            height: 16px;
+            margin: 0; /* Remove previous margin */
+        }
+
+        .clock-time {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .clock-date {
+            color: #000;
+            text-align: right;
+            font-size: 11px; /* Slightly smaller than time */
         }
 
         /* TERMINAL STYLING (FROM EARLIER) */
@@ -323,7 +361,7 @@
 
     <div class="win98-taskbar">
         <div class="start-button">
-            <img src="../static/images/windows98-logo.png">
+            <img src={{ "images/windows98-logo.png" | relURL }}>
             Start
         </div>
         <div class="taskbar-programs">
@@ -331,11 +369,18 @@
             <div class="taskbar-item">Document Explorer</div>
             <div class="taskbar-item">Internet Explorer</div>
         </div>
+
         <div class="taskbar-clock">
-            <span id="win98-clock">4:25 PM</span>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEEjIZB5xJGwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAPklEQVQ4y2NgGAWjYBSMAlIAI4Mx9XwADcQ/SPz/PwMDw38GAAY2BB5vQrLZAAX/0Qz5j2bIfzRD/qMZ8h/NkP8A1h8EHm9CstkAAAAASUVORK5CYII=" alt="Volume">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AkEEjIZB5xJGwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAJklEQVQ4y2NgGAWjYBSMAlIAI4Mx9XwADcQ/SPz/PwMDw38GAAY2BB5vQrLZAAAAAElFTkSuQmCC" alt="Windows Logo Small">
+            <div class="clock-icons">
+                <img src="{{ "images/windows98-calendar.png" | relURL }}">
+                <img src="{{ "images/windows98-loudspeaker.png" | relURL }}">
+            </div>
+            <div id="win98-clock">
+                <div class="clock-time">4:25 PM</div>
+                <div class="clock-date">5/2/2024</div>
+            </div>
         </div>
+
     </div>
 </div>
 
