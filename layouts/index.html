@@ -35,7 +35,6 @@
         position: relative;
         width: 100%;
         margin: 0;
-        padding: 2rem 0 20px; /* Combined padding declaration */
         background: #008080;
         min-height: calc(100vh - 6rem);
         display: flex;
@@ -206,14 +205,14 @@
     .win98-content h1,
     .win98-content h2,
     .win98-content h3 {
+        font-size: 3rem;
         font-weight: normal;
         margin: 0 0 1.5rem 0;
+        text-align: center;
     }
 
     .win98-content h1.win98 {
-        font-size: 2rem;
         position: relative;
-        display: inline-block;
     }
 
     /* Form Styles */
@@ -264,6 +263,31 @@
         border: 1px solid white;
     }
 
+    .quick-launch {
+        padding-right: 5px;
+        display: flex;
+        gap: 0;
+    }
+
+    .quick-launch-item {
+        /*margin-right: 2px;*/
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+    }
+
+    .taskbar-programs {
+        flex-grow: 1;
+        display: flex;
+    }
+
+    .quick-launch img {
+        width: 25px;
+        height: 32px;
+        display: block;
+        /*min-width: 32px; !* Prevents squishing *!*/
+    }
+
     /* Marquee Styles */
     .collaborations {
         overflow: hidden;
@@ -300,8 +324,10 @@
     <div class="win98-content" style="height: 400px; overflow-y: auto;">
         <!-- SECTION 1: INTRO + CONTACT -->
         <section class="intro">
-            <h1 class="win98">$ ./welcome.sh</h1>
-            <p>> Disruptive software consultancy for founders who break rules.</p>
+            <p class="win98" style="font-size: 1.4rem">Microsoft Windows 98 [Version 4.10.22220]</p>
+            <p class="win98">C:\Users\Mrira\Downloads> Executing "Mrira.exe"</p>
+            <p class="win98">> Loading...</p>
+            <h1 class="win98">Welcome to Mrira</h1>
 
             <div class="contact-form">
                 <h2>$ ./contact.sh</h2>
@@ -358,6 +384,15 @@
             <img src={{ "images/windows98-logo.png" | relURL }}>
             Start
         </div>
+
+        <!-- Quick launch icons area (right of start button) -->
+        <div class="quick-launch">
+            <div class="quick-launch-item"><img src="{{ "images/internet-explorer.png" | relURL }}"></div>
+            <div class="quick-launch-item"><img src="{{ "images/my-documents.png" | relURL }}"></div>
+            <div class="quick-launch-item"><img src="{{ "images/outlook-express.png" | relURL }}"></div>
+            <div class="quick-launch-item"><img src="{{ "images/show-desktop.png" | relURL }}"></div>
+        </div>
+
         <div class="taskbar-programs">
             <div class="taskbar-item active">Mrira.exe</div>
             <div class="taskbar-item">Document Explorer</div>
