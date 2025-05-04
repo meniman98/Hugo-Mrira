@@ -205,7 +205,6 @@
     .win98-content h1,
     .win98-content h2,
     .win98-content h3 {
-        font-size: 3rem;
         font-weight: normal;
         margin: 0 0 1.5rem 0;
         text-align: center;
@@ -288,21 +287,30 @@
         /*min-width: 32px; !* Prevents squishing *!*/
     }
 
-    /* Marquee Styles */
+    /* Marquee Container */
     .collaborations {
         overflow: hidden;
         white-space: nowrap;
+        position: relative;
+        margin: 1rem 0; /* Optional: Adds spacing */
     }
 
+    /* Marquee Content */
     .marquee {
         display: inline-block;
-        animation: marquee 20s linear infinite;
+        animation: marquee 40s linear infinite;
+        padding-right: 50px; /* Small gap between duplicates */
     }
 
+    /* Animation: Moves left, then loops seamlessly */
     @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }/* -50% because content is duplicated */
 
 </style>
 
@@ -322,42 +330,47 @@
 
     <!-- TERMINAL CONTENT -->
     <div class="win98-content" style="height: 400px; overflow-y: auto;">
-        <!-- SECTION 1: INTRO + CONTACT -->
+        <!-- SECTION 1: INTRO -->
         <section class="intro">
             <p class="win98" style="font-size: 1.4rem">Microsoft Windows 98 [Version 4.10.22220]</p>
             <p class="win98">C:\Users\Mrira\Downloads> Executing "Mrira.exe"</p>
             <p class="win98">> Loading...</p>
             <h1 class="win98">Welcome to Mrira</h1>
+            <h3>A Creative Product Studio</h3>
+            <br>
+            <ul class="cli-list">
+                <li>We create software from 0 to a 100 with our partners.</li>
+                <li>We assist with idea creation, UI/UX design, and even digital marketing</li>
+                <li>We are a small, agile and lean team spanning across the globe</li>
+                <li>We go big or we go home. No in-betweens baby. Excellence only</li>
+                <li>We didn't choose software development. It chose us</li>
+            </ul>
 
-            <div class="contact-form">
-                <h2>$ ./contact.sh</h2>
-                <form>
-                    <input type="text" placeholder="NAME" required>
-                    <input type="email" placeholder="EMAIL" required>
-                    <textarea placeholder="MESSAGE" rows="4" required></textarea>
-                    <button type="submit">$ ./send</button>
-                </form>
-            </div>
+
         </section>
 
         <!-- SECTION 2: COLLABORATIONS -->
         <section>
-            <h2>$ ./collaborations.sh</h2>
+            <h2>Collaborations</h2>
+            <h3> Mrira's team members have collaborated with:</h3>
+            <br>
             <div class="collaborations">
                 <div class="marquee">
-                    > STARTUP_X > TECH_Y > F500_COMPANY > UNICORN_STUDIO > STARTUP_X > TECH_Y > F500_COMPANY > UNICORN_STUDIO
+                    > UNICEF  > ACCENTURE > SAP > INTEL > SIEMENS > DEUTSCHE_BANK > BOSCH > CONTINENTAL > RABOBANK > HP > BARCLAYS > VALEO > WELLS_FARGO > DELL <!-- Original -->
+                    > UNICEF  > ACCENTURE > SAP > INTEL > SIEMENS > DEUTSCHE_BANK > BOSCH > CONTINENTAL > RABOBANK > HP > BARCLAYS > VALEO > WELLS_FARGO > DELL <!-- Duplicate -->
                 </div>
             </div>
         </section>
 
         <!-- SECTION 3: WHAT MAKES US UNIQUE -->
         <section>
-            <h2>$ ./why_us.sh</h2>
+            <h2>What makes Mrira unique?</h2>
             <ul class="cli-list">
-                <li>No bullshit. Just scalable, future-proof code.</li>
-                <li>We ship MVPs in days, not months.</li>
-                <li>Ex-startup founders. We speak your language.</li>
-                <li>Your competitors will hate us.</li>
+                <li></li>
+                <li> <b> We craft striking interfaces. </b> Thoughtful design and standout visuals are baked into every product we build</li>
+                <li> <b> We build real, fully functioning software. </b> MVPs, prototypes, full apps — not decks, mockups, or fluff.</li>
+                <li> <b> We think like partners. </b> From idea to launch, we help shape the product and the brand behind it</li>
+                <li> <b> We let our work do the talking. </b> Our work is live, loud, and proof of what we can build for you</li>
             </ul>
         </section>
 
@@ -375,6 +388,16 @@
                 </div>
             </div>
         </section>
+
+        <div class="contact-form">
+            <h2>$ ./contact.sh</h2>
+            <form>
+                <input type="text" placeholder="NAME" required>
+                <input type="email" placeholder="EMAIL" required>
+                <textarea placeholder="MESSAGE" rows="4" required></textarea>
+                <button type="submit">$ ./send</button>
+            </form>
+        </div>
     </div>
 
 </div>
