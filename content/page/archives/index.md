@@ -1,8 +1,8 @@
 ---
-title: "Archives"
+title: "Blog"
 date: 2022-03-06
 layout: "archives"
-slug: "archives"
+slug: "blog"
 menu:
     main:
         weight: 2

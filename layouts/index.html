@@ -23,6 +23,30 @@
         document.querySelector('.clock-date').textContent = `${day}/${month}/${year}`;
     }
 
+        const form = document.getElementById('contactForm');
+        const message = document.getElementById('formSuccess');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        form.reset();
+                        message.style.display = 'block';
+                    } else {
+                        alert('Something went wrong. Please try again later.');
+                    }
+                })
+                .catch(() => alert('Failed to send. Maybe check your internet.'));
+        });
+
+
     setInterval(updateClock, 1000);
     updateClock();
 </script>
@@ -375,29 +399,43 @@
         </section>
 
         <!-- SECTION 4: PORTFOLIO -->
-        <section>
-            <h2>$ ./portfolio.sh</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=APP_1" alt="MVP Screenshot">
-                    <p>> Fintech disruptor (2023)</p>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=APP_2" alt="MVP Screenshot">
-                    <p>> AI-powered recruiting (2024)</p>
-                </div>
-            </div>
-        </section>
+<!--        <section>-->
+<!--            <h2>$ ./portfolio.sh</h2>-->
+<!--            <div class="portfolio-grid">-->
+<!--                <div class="portfolio-item">-->
+<!--                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=APP_1" alt="MVP Screenshot">-->
+<!--                    <p>> Fintech disruptor (2023)</p>-->
+<!--                </div>-->
+<!--                <div class="portfolio-item">-->
+<!--                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=APP_2" alt="MVP Screenshot">-->
+<!--                    <p>> AI-powered recruiting (2024)</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
 
         <div class="contact-form">
-            <h2>$ ./contact.sh</h2>
-            <form>
-                <input type="text" placeholder="NAME" required>
-                <input type="email" placeholder="EMAIL" required>
-                <textarea placeholder="MESSAGE" rows="4" required></textarea>
-                <button type="submit">$ ./send</button>
+            <h2>Contact</h2>
+            <form action="https://formsubmit.co/meniman98@gmail.com" method="POST">
+
+                <input type="text" name="name" placeholder="What's your name?" required>
+
+                <input type="email" name="email" placeholder="Your e-mail please" required>
+
+                <textarea name="message" placeholder="How can we help?" rows="4" required></textarea>
+
+                <!-- Honeypot field (invisible to users, traps bots) -->
+                <input type="text" name="_honey" style="display:none">
+
+                <!-- Disable FormSubmit's CAPTCHA -->
+                <input type="hidden" name="_captcha" value="false">
+
+                <!-- Optional: Redirect to thank-you page after submit -->
+                <input type="hidden" name="_next" value="http://localhost:1313/">
+
+                <button type="submit">Submit</button>
             </form>
         </div>
+
     </div>
 
 </div>
