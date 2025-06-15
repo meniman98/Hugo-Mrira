@@ -19,8 +19,8 @@
         const day = now.getDate();
         const year = now.getFullYear();
 
-        document.querySelector('.clock-time').textContent = `${displayHours}:${minutes} ${ampm}`;
-        document.querySelector('.clock-date').textContent = `${day}/${month}/${year}`;
+        document.querySelector('#win98-clock .clock-time').textContent = `${displayHours}:${minutes} ${ampm}`;
+        document.querySelector('#win98-clock .clock-date').textContent = `${day}/${month}/${year}`;
     }
 
         const form = document.getElementById('contactForm');
@@ -277,13 +277,14 @@
     /* Portfolio Grid */
     .portfolio-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr); /* Explicitly create 2 equal columns */
+        gap: 2rem;
+        justify-content: space-between; /* Distribute space between columns */
     }
 
-    .portfolio-item img {
-        width: 100%;
-        border: 1px solid white;
+    .portfolio-item video {
+        width: 100%; /* Make videos fill their containers */
+        height: auto; /* Maintain aspect ratio */
     }
 
     .quick-launch {
@@ -399,19 +400,32 @@
         </section>
 
         <!-- SECTION 4: PORTFOLIO -->
-<!--        <section>-->
-<!--            <h2>$ ./portfolio.sh</h2>-->
-<!--            <div class="portfolio-grid">-->
-<!--                <div class="portfolio-item">-->
-<!--                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=APP_1" alt="MVP Screenshot">-->
-<!--                    <p>> Fintech disruptor (2023)</p>-->
-<!--                </div>-->
-<!--                <div class="portfolio-item">-->
-<!--                    <img src="https://via.placeholder.com/600x400/000000/FFFFFF?text=APP_2" alt="MVP Screenshot">-->
-<!--                    <p>> AI-powered recruiting (2024)</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
+        <section>
+            <h2>Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <a href="http://localhost:63342/portfolio/fitness-app/index.html?_ijt=9ggi63c3l7gdvefmrr4ugs2j0l&_ij_reload=RELOAD_ON_SAVE"
+                       target="_blank" rel="noopener noreferrer">
+                        <video autoplay loop muted playsinline width="400">
+                            <source src="{{ "videos/FitTrackPro-edited.mp4" | relURL }}" type="video/mp4">
+                            Sorry, your browser does not support the video tag.
+                        </video>
+                        <span> Fitness tracking demo app</span>
+                    </a>
+                </div>
+                <div class="portfolio-item">
+                    <a href = "http://localhost:63342/portfolio/investment/index.html?_ijt=9ggi63c3l7gdvefmrr4ugs2j0l&_ij_reload=RELOAD_ON_SAVE"
+                       target="_blank" rel="noopener noreferrer">
+                        <video autoplay loop muted playsinline width="400">
+                            <source src = "{{ "videos/quantumInvest-edited.mp4" | relURL }}" type="video/mp4">
+                            Sorry, your browser does not support the video tag
+                        </video>
+                        <span>Investing style demo app</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
 
         <div class="contact-form">
             <h2>Contact</h2>
@@ -430,7 +444,7 @@
                 <input type="hidden" name="_captcha" value="false">
 
                 <!-- Optional: Redirect to thank-you page after submit -->
-                <input type="hidden" name="_next" value="http://localhost:1313/">
+<!--                <input type="hidden" name="_next" value="http://localhost:1313/">-->
 
                 <button type="submit">Submit</button>
             </form>
@@ -466,8 +480,8 @@
                 <img src="{{ "images/windows98-loudspeaker.png" | relURL }}">
             </div>
             <div id="win98-clock">
-                <div class="clock-time">4:25 PM</div>
-                <div class="clock-date">5/2/2024</div>
+                <div class="clock-time">4:25PM</div>
+                <div class="clock-date">08/05/2025</div>
             </div>
         </div>
 
