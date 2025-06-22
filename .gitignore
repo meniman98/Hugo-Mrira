@@ -1,3 +1,10 @@
 public
 resources
 .hugo_build.lock
+.idea/
+.vscode/
+.devcontainer/
+assets/jsconfig.json
+themes/stack/exampleSite/
+themes/stack/debug.sh
+themes/stack/netlify.toml
