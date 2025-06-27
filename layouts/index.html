@@ -4,489 +4,489 @@
     {{ $filtered := ($pages | intersect $notHidden) }}
     {{ $pag := .Paginate ($filtered) }}
 
-
-
-<script>
-    function updateClock() {
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        const displayHours = hours % 12 || 12;
-
-        // Get date components
-        const month = now.getMonth() + 1;
-        const day = now.getDate();
-        const year = now.getFullYear();
-
-        document.querySelector('#win98-clock .clock-time').textContent = `${displayHours}:${minutes} ${ampm}`;
-        document.querySelector('#win98-clock .clock-date').textContent = `${day}/${month}/${year}`;
-    }
-
-        const form = document.getElementById('contactForm');
-        const message = document.getElementById('formSuccess');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        form.reset();
-                        message.style.display = 'block';
-                    } else {
-                        alert('Something went wrong. Please try again later.');
-                    }
-                })
-                .catch(() => alert('Failed to send. Maybe check your internet.'));
-        });
-
-
-    setInterval(updateClock, 1000);
-    updateClock();
-</script>
-
-
-<style>
-
-    /* WINDOWS 98 THEME STYLES */
-    .win98-container {
-        position: relative;
-        width: 100%;
-        margin: 0;
-        background: #008080;
-        min-height: calc(100vh - 6rem);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* Reset Stack theme styles within our container */
-    .win98-container * {
-        font-family: 'Courier New', monospace !important;
-    }
-
-    /* Window Styles */
-    .win98-window {
-        width: 80%;
-        margin: 0 auto;
-        background: #c0c0c0;
-        border: 2px solid;
-        border-color: #dfdfdf #000000 #000000 #dfdfdf;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Titlebar Styles */
-    .win98-titlebar {
-        background: linear-gradient(90deg, #000080, #1084d0);
-        color: white;
-        padding: 4px 8px;
-        font-weight: bold;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .win98-titlebar-controls {
-        display: flex;
-    }
-
-    .win98-btn {
-        width: 16px;
-        height: 14px;
-        margin-left: 2px;
-        background: #c0c0c0;
-        border: 2px solid;
-        border-color: #dfdfdf #808080 #808080 #dfdfdf;
-        font-size: 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: default;
-    }
-
-    .win98-btn.close {
-        font-weight: bold;
-    }
-
-    /* Content Area */
-    .win98-content {
-        padding: 8px;
-        background: black;
-        color: white;
-        min-height: 70vh;
-    }
-
-    /* Taskbar Styles */
-    .win98-taskbar {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 30px;
-        background: #c0c0c0;
-        border-top: 2px solid #dfdfdf;
-        display: flex;
-        align-items: center;
-        padding: 0 4px;
-        z-index: 1000;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .start-button {
-        background: #c0c0c0;
-        border: 2px solid;
-        border-color: #dfdfdf #808080 #808080 #dfdfdf;
-        padding: 2px 6px;
-        display: flex;
-        align-items: center;
-        font-weight: bold;
-        margin-right: 4px;
-    }
-
-    .start-button img {
-        margin-right: 4px;
-        width: 16px;
-        height: 16px;
-    }
-
-    .taskbar-programs {
-        display: flex;
-        flex-grow: 1;
-    }
-
-    .taskbar-item {
-        background: #c0c0c0;
-        border: 2px solid;
-        border-color: #808080 #dfdfdf #dfdfdf #808080;
-        padding: 2px 8px;
-        margin-right: 4px;
-        font-size: 12px;
-    }
-
-    .taskbar-item.active {
-        border-color: #808080 #ffffff #ffffff #808080;
-    }
-
-    /* Clock Styles */
-    .taskbar-clock {
-        background: #c0c0c0;
-        border: 2px solid;
-        border-color: #808080 #dfdfdf #dfdfdf #808080;
-        padding: 2px 6px;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    #win98-clock {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.2;
-        min-width: 60px;
-        margin-left: 2px;
-    }
-
-    .clock-icons {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-
-    .clock-icons img,
-    .taskbar-clock img,
-    .start-button img {
-        width: 16px;
-        height: 16px;
-    }
-
-    .clock-time {
-        font-weight: bold;
-        text-align: right;
-    }
-
-    .clock-date {
-        color: #000;
-        text-align: right;
-        font-size: 11px;
-    }
-
-    /* CONTENT STYLES */
-    .win98-content section {
-        padding: 2rem 1rem;
-        max-width: 900px;
-        margin: 0 auto;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
-    }
-
-    .win98-content h1,
-    .win98-content h2,
-    .win98-content h3 {
-        font-weight: normal;
-        margin: 0 0 1.5rem 0;
-        text-align: center;
-    }
-
-    .win98-content h1.win98 {
-        position: relative;
-    }
-
-    /* Form Styles */
-    .contact-form input,
-    .contact-form textarea,
-    .contact-form button {
-        background: transparent;
-        border: 1px solid white;
-        color: white;
-        padding: 0.8rem;
-        font-family: 'Courier New', monospace;
-        width: 100%;
-        margin-bottom: 1rem;
-    }
-
-    .contact-form button:hover {
-        background: white;
-        color: black;
-    }
-
-    /* List Styles */
-    .cli-list {
-        list-style: none;
-        padding: 0;
-    }
-
-    .cli-list li {
-        margin-bottom: 1rem;
-        position: relative;
-        padding-left: 2rem;
-    }
-
-    .cli-list li::before {
-        content: "> ";
-        position: absolute;
-        left: 0;
-    }
-
-    /* Portfolio Grid */
-    .portfolio-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Explicitly create 2 equal columns */
-        gap: 2rem;
-        justify-content: space-between; /* Distribute space between columns */
-    }
-
-    .portfolio-item video {
-        width: 100%; /* Make videos fill their containers */
-        height: auto; /* Maintain aspect ratio */
-    }
-
-    .quick-launch {
-        padding-right: 5px;
-        display: flex;
-        gap: 0;
-    }
-
-    .quick-launch-item {
-        /*margin-right: 2px;*/
-        margin: 0;
-        padding: 0;
-        display: inline-block;
-    }
-
-    .taskbar-programs {
-        flex-grow: 1;
-        display: flex;
-    }
-
-    .quick-launch img {
-        width: 25px;
-        height: 32px;
-        display: block;
-        /*min-width: 32px; !* Prevents squishing *!*/
-    }
-
-    /* Marquee Container */
-    .collaborations {
-        overflow: hidden;
-        white-space: nowrap;
-        position: relative;
-        margin: 1rem 0; /* Optional: Adds spacing */
-    }
-
-    /* Marquee Content */
-    .marquee {
-        display: inline-block;
-        animation: marquee 40s linear infinite;
-        padding-right: 50px; /* Small gap between duplicates */
-    }
-
-    /* Animation: Moves left, then loops seamlessly */
-    @keyframes marquee {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-50%);
-        }
-    }/* -50% because content is duplicated */
-
-</style>
-
-<div class="win98-container">
-
-<!-- WINDOWS 98 WINDOW FRAME -->
-    <div class="win98-window">
-    <!-- TITLEBAR -->
-    <div class="win98-titlebar">
-        <span>Mrira.exe</span>
-        <div class="win98-titlebar-controls">
-            <div class="win98-btn minimize">_</div>
-            <div class="win98-btn maximize">□</div>
-            <div class="win98-btn close">X</div>
-        </div>
-    </div>
-
-    <!-- TERMINAL CONTENT -->
-    <div class="win98-content" style="height: 400px; overflow-y: auto;">
-        <!-- SECTION 1: INTRO -->
-        <section class="intro">
-            <p class="win98" style="font-size: 1.4rem">Microsoft Windows 98 [Version 4.10.22220]</p>
-            <p class="win98">C:\Users\Mrira\Downloads> Executing "Mrira.exe"</p>
-            <p class="win98">> Loading...</p>
-            <h1 class="win98">Welcome to Mrira</h1>
-            <h3>A Creative Product Studio</h3>
-            <br>
-            <ul class="cli-list">
-                <li>We create software from 0 to a 100 with our partners.</li>
-                <li>We assist with idea creation, UI/UX design, and even digital marketing</li>
-                <li>We are a small, agile and lean team spanning across the globe</li>
-                <li>We go big or we go home. No in-betweens baby. Excellence only</li>
-                <li>We didn't choose software development. It chose us</li>
-            </ul>
-
-
-        </section>
-
-        <!-- SECTION 2: COLLABORATIONS -->
-        <section>
-            <h2>Collaborations</h2>
-            <h3> Mrira's team members have collaborated with:</h3>
-            <br>
-            <div class="collaborations">
-                <div class="marquee">
-                    > UNICEF  > ACCENTURE > SAP > INTEL > SIEMENS > DEUTSCHE_BANK > BOSCH > CONTINENTAL > RABOBANK > HP > BARCLAYS > VALEO > WELLS_FARGO > DELL <!-- Original -->
-                    > UNICEF  > ACCENTURE > SAP > INTEL > SIEMENS > DEUTSCHE_BANK > BOSCH > CONTINENTAL > RABOBANK > HP > BARCLAYS > VALEO > WELLS_FARGO > DELL <!-- Duplicate -->
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: WHAT MAKES US UNIQUE -->
-        <section>
-            <h2>What makes Mrira unique?</h2>
-            <ul class="cli-list">
-                <li></li>
-                <li> <b> We craft striking interfaces. </b> Thoughtful design and standout visuals are baked into every product we build</li>
-                <li> <b> We build real, fully functioning software. </b> MVPs, prototypes, full apps — not decks, mockups, or fluff.</li>
-                <li> <b> We think like partners. </b> From idea to launch, we help shape the product and the brand behind it</li>
-                <li> <b> We let our work do the talking. </b> Our work is live, loud, and proof of what we can build for you</li>
-            </ul>
-        </section>
-
-        <!-- SECTION 4: PORTFOLIO -->
-        <section>
-            <h2>Portfolio</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <a href="http://localhost:63342/portfolio/fitness-app/index.html?_ijt=9ggi63c3l7gdvefmrr4ugs2j0l&_ij_reload=RELOAD_ON_SAVE"
-                       target="_blank" rel="noopener noreferrer">
-                        <video autoplay loop muted playsinline width="400">
-                            <source src="{{ "videos/FitTrackPro-edited.mp4" | relURL }}" type="video/mp4">
-                            Sorry, your browser does not support the video tag.
-                        </video>
-                        <span> Fitness tracking demo app</span>
-                    </a>
-                </div>
-                <div class="portfolio-item">
-                    <a href = "http://localhost:63342/portfolio/investment/index.html?_ijt=9ggi63c3l7gdvefmrr4ugs2j0l&_ij_reload=RELOAD_ON_SAVE"
-                       target="_blank" rel="noopener noreferrer">
-                        <video autoplay loop muted playsinline width="400">
-                            <source src = "{{ "videos/quantumInvest-edited.mp4" | relURL }}" type="video/mp4">
-                            Sorry, your browser does not support the video tag
-                        </video>
-                        <span>Investing style demo app</span>
-                    </a>
-
-                </div>
-            </div>
-        </section>
-
-        <div class="contact-form">
-            <h2>Contact</h2>
-            <form action="https://formsubmit.co/meniman98@gmail.com" method="POST">
-
-                <input type="text" name="name" placeholder="What's your name?" required>
-
-                <input type="email" name="email" placeholder="Your e-mail please" required>
-
-                <textarea name="message" placeholder="How can we help?" rows="4" required></textarea>
-
-                <!-- Honeypot field (invisible to users, traps bots) -->
-                <input type="text" name="_honey" style="display:none">
-
-                <!-- Disable FormSubmit's CAPTCHA -->
-                <input type="hidden" name="_captcha" value="false">
-
-                <!-- Optional: Redirect to thank-you page after submit -->
-<!--                <input type="hidden" name="_next" value="http://localhost:1313/">-->
-
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-
-    </div>
-
-</div>
-
-    <div class="win98-taskbar">
-        <div class="start-button">
-            <img src={{ "images/windows98-logo.png" | relURL }}>
-            Start
-        </div>
-
-        <!-- Quick launch icons area (right of start button) -->
-        <div class="quick-launch">
-            <div class="quick-launch-item"><img src="{{ "images/internet-explorer.png" | relURL }}"></div>
-            <div class="quick-launch-item"><img src="{{ "images/my-documents.png" | relURL }}"></div>
-            <div class="quick-launch-item"><img src="{{ "images/outlook-express.png" | relURL }}"></div>
-            <div class="quick-launch-item"><img src="{{ "images/show-desktop.png" | relURL }}"></div>
-        </div>
-
-        <div class="taskbar-programs">
-            <div class="taskbar-item active">Mrira.exe</div>
-            <div class="taskbar-item">Document Explorer</div>
-            <div class="taskbar-item">Internet Explorer</div>
-        </div>
-
-        <div class="taskbar-clock">
-            <div class="clock-icons">
-                <img src="{{ "images/windows98-calendar.png" | relURL }}">
-                <img src="{{ "images/windows98-loudspeaker.png" | relURL }}">
-            </div>
-            <div id="win98-clock">
-                <div class="clock-time">4:25PM</div>
-                <div class="clock-date">08/05/2025</div>
-            </div>
-        </div>
-
-    </div>
-</div>
+<p>ello ello </p>
+
+<!--<script>-->
+<!--    function updateClock() {-->
+<!--        const now = new Date();-->
+<!--        const hours = now.getHours();-->
+<!--        const minutes = now.getMinutes().toString().padStart(2, '0');-->
+<!--        const ampm = hours >= 12 ? 'PM' : 'AM';-->
+<!--        const displayHours = hours % 12 || 12;-->
+
+<!--        // Get date components-->
+<!--        const month = now.getMonth() + 1;-->
+<!--        const day = now.getDate();-->
+<!--        const year = now.getFullYear();-->
+
+<!--        document.querySelector('#win98-clock .clock-time').textContent = `${displayHours}:${minutes} ${ampm}`;-->
+<!--        document.querySelector('#win98-clock .clock-date').textContent = `${day}/${month}/${year}`;-->
+<!--    }-->
+
+<!--        const form = document.getElementById('contactForm');-->
+<!--        const message = document.getElementById('formSuccess');-->
+
+<!--        form.addEventListener('submit', function(e) {-->
+<!--            e.preventDefault();-->
+<!--            const formData = new FormData(form);-->
+
+<!--            fetch(form.action, {-->
+<!--                method: 'POST',-->
+<!--                body: formData,-->
+<!--                headers: { 'Accept': 'application/json' }-->
+<!--            })-->
+<!--                .then(response => {-->
+<!--                    if (response.ok) {-->
+<!--                        form.reset();-->
+<!--                        message.style.display = 'block';-->
+<!--                    } else {-->
+<!--                        alert('Something went wrong. Please try again later.');-->
+<!--                    }-->
+<!--                })-->
+<!--                .catch(() => alert('Failed to send. Maybe check your internet.'));-->
+<!--        });-->
+
+
+<!--    setInterval(updateClock, 1000);-->
+<!--    updateClock();-->
+<!--</script>-->
+
+
+<!--<style>-->
+
+<!--    /* WINDOWS 98 THEME STYLES */-->
+<!--    .win98-container {-->
+<!--        position: relative;-->
+<!--        width: 100%;-->
+<!--        margin: 0;-->
+<!--        background: #008080;-->
+<!--        min-height: calc(100vh - 6rem);-->
+<!--        display: flex;-->
+<!--        justify-content: center;-->
+<!--        align-items: center;-->
+<!--    }-->
+
+<!--    /* Reset Stack theme styles within our container */-->
+<!--    .win98-container * {-->
+<!--        font-family: 'Courier New', monospace !important;-->
+<!--    }-->
+
+<!--    /* Window Styles */-->
+<!--    .win98-window {-->
+<!--        width: 80%;-->
+<!--        margin: 0 auto;-->
+<!--        background: #c0c0c0;-->
+<!--        border: 2px solid;-->
+<!--        border-color: #dfdfdf #000000 #000000 #dfdfdf;-->
+<!--        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);-->
+<!--    }-->
+
+<!--    /* Titlebar Styles */-->
+<!--    .win98-titlebar {-->
+<!--        background: linear-gradient(90deg, #000080, #1084d0);-->
+<!--        color: white;-->
+<!--        padding: 4px 8px;-->
+<!--        font-weight: bold;-->
+<!--        display: flex;-->
+<!--        justify-content: space-between;-->
+<!--        align-items: center;-->
+<!--    }-->
+
+<!--    .win98-titlebar-controls {-->
+<!--        display: flex;-->
+<!--    }-->
+
+<!--    .win98-btn {-->
+<!--        width: 16px;-->
+<!--        height: 14px;-->
+<!--        margin-left: 2px;-->
+<!--        background: #c0c0c0;-->
+<!--        border: 2px solid;-->
+<!--        border-color: #dfdfdf #808080 #808080 #dfdfdf;-->
+<!--        font-size: 8px;-->
+<!--        display: flex;-->
+<!--        justify-content: center;-->
+<!--        align-items: center;-->
+<!--        cursor: default;-->
+<!--    }-->
+
+<!--    .win98-btn.close {-->
+<!--        font-weight: bold;-->
+<!--    }-->
+
+<!--    /* Content Area */-->
+<!--    .win98-content {-->
+<!--        padding: 8px;-->
+<!--        background: black;-->
+<!--        color: white;-->
+<!--        min-height: 70vh;-->
+<!--    }-->
+
+<!--    /* Taskbar Styles */-->
+<!--    .win98-taskbar {-->
+<!--        position: absolute;-->
+<!--        bottom: 0;-->
+<!--        left: 0;-->
+<!--        right: 0;-->
+<!--        height: 30px;-->
+<!--        background: #c0c0c0;-->
+<!--        border-top: 2px solid #dfdfdf;-->
+<!--        display: flex;-->
+<!--        align-items: center;-->
+<!--        padding: 0 4px;-->
+<!--        z-index: 1000;-->
+<!--        width: 100%;-->
+<!--        box-sizing: border-box;-->
+<!--    }-->
+
+<!--    .start-button {-->
+<!--        background: #c0c0c0;-->
+<!--        border: 2px solid;-->
+<!--        border-color: #dfdfdf #808080 #808080 #dfdfdf;-->
+<!--        padding: 2px 6px;-->
+<!--        display: flex;-->
+<!--        align-items: center;-->
+<!--        font-weight: bold;-->
+<!--        margin-right: 4px;-->
+<!--    }-->
+
+<!--    .start-button img {-->
+<!--        margin-right: 4px;-->
+<!--        width: 16px;-->
+<!--        height: 16px;-->
+<!--    }-->
+
+<!--    .taskbar-programs {-->
+<!--        display: flex;-->
+<!--        flex-grow: 1;-->
+<!--    }-->
+
+<!--    .taskbar-item {-->
+<!--        background: #c0c0c0;-->
+<!--        border: 2px solid;-->
+<!--        border-color: #808080 #dfdfdf #dfdfdf #808080;-->
+<!--        padding: 2px 8px;-->
+<!--        margin-right: 4px;-->
+<!--        font-size: 12px;-->
+<!--    }-->
+
+<!--    .taskbar-item.active {-->
+<!--        border-color: #808080 #ffffff #ffffff #808080;-->
+<!--    }-->
+
+<!--    /* Clock Styles */-->
+<!--    .taskbar-clock {-->
+<!--        background: #c0c0c0;-->
+<!--        border: 2px solid;-->
+<!--        border-color: #808080 #dfdfdf #dfdfdf #808080;-->
+<!--        padding: 2px 6px;-->
+<!--        font-size: 12px;-->
+<!--        display: flex;-->
+<!--        align-items: center;-->
+<!--        gap: 6px;-->
+<!--    }-->
+
+<!--    #win98-clock {-->
+<!--        display: flex;-->
+<!--        flex-direction: column;-->
+<!--        line-height: 1.2;-->
+<!--        min-width: 60px;-->
+<!--        margin-left: 2px;-->
+<!--    }-->
+
+<!--    .clock-icons {-->
+<!--        display: flex;-->
+<!--        align-items: center;-->
+<!--        gap: 4px;-->
+<!--    }-->
+
+<!--    .clock-icons img,-->
+<!--    .taskbar-clock img,-->
+<!--    .start-button img {-->
+<!--        width: 16px;-->
+<!--        height: 16px;-->
+<!--    }-->
+
+<!--    .clock-time {-->
+<!--        font-weight: bold;-->
+<!--        text-align: right;-->
+<!--    }-->
+
+<!--    .clock-date {-->
+<!--        color: #000;-->
+<!--        text-align: right;-->
+<!--        font-size: 11px;-->
+<!--    }-->
+
+<!--    /* CONTENT STYLES */-->
+<!--    .win98-content section {-->
+<!--        padding: 2rem 1rem;-->
+<!--        max-width: 900px;-->
+<!--        margin: 0 auto;-->
+<!--        border-bottom: 1px dashed rgba(255, 255, 255, 0.2);-->
+<!--    }-->
+
+<!--    .win98-content h1,-->
+<!--    .win98-content h2,-->
+<!--    .win98-content h3 {-->
+<!--        font-weight: normal;-->
+<!--        margin: 0 0 1.5rem 0;-->
+<!--        text-align: center;-->
+<!--    }-->
+
+<!--    .win98-content h1.win98 {-->
+<!--        position: relative;-->
+<!--    }-->
+
+<!--    /* Form Styles */-->
+<!--    .contact-form input,-->
+<!--    .contact-form textarea,-->
+<!--    .contact-form button {-->
+<!--        background: transparent;-->
+<!--        border: 1px solid white;-->
+<!--        color: white;-->
+<!--        padding: 0.8rem;-->
+<!--        font-family: 'Courier New', monospace;-->
+<!--        width: 100%;-->
+<!--        margin-bottom: 1rem;-->
+<!--    }-->
+
+<!--    .contact-form button:hover {-->
+<!--        background: white;-->
+<!--        color: black;-->
+<!--    }-->
+
+<!--    /* List Styles */-->
+<!--    .cli-list {-->
+<!--        list-style: none;-->
+<!--        padding: 0;-->
+<!--    }-->
+
+<!--    .cli-list li {-->
+<!--        margin-bottom: 1rem;-->
+<!--        position: relative;-->
+<!--        padding-left: 2rem;-->
+<!--    }-->
+
+<!--    .cli-list li::before {-->
+<!--        content: "> ";-->
+<!--        position: absolute;-->
+<!--        left: 0;-->
+<!--    }-->
+
+<!--    /* Portfolio Grid */-->
+<!--    .portfolio-grid {-->
+<!--        display: grid;-->
+<!--        grid-template-columns: repeat(2, 1fr); /* Explicitly create 2 equal columns */-->
+<!--        gap: 2rem;-->
+<!--        justify-content: space-between; /* Distribute space between columns */-->
+<!--    }-->
+
+<!--    .portfolio-item video {-->
+<!--        width: 100%; /* Make videos fill their containers */-->
+<!--        height: auto; /* Maintain aspect ratio */-->
+<!--    }-->
+
+<!--    .quick-launch {-->
+<!--        padding-right: 5px;-->
+<!--        display: flex;-->
+<!--        gap: 0;-->
+<!--    }-->
+
+<!--    .quick-launch-item {-->
+<!--        /*margin-right: 2px;*/-->
+<!--        margin: 0;-->
+<!--        padding: 0;-->
+<!--        display: inline-block;-->
+<!--    }-->
+
+<!--    .taskbar-programs {-->
+<!--        flex-grow: 1;-->
+<!--        display: flex;-->
+<!--    }-->
+
+<!--    .quick-launch img {-->
+<!--        width: 25px;-->
+<!--        height: 32px;-->
+<!--        display: block;-->
+<!--        /*min-width: 32px; !* Prevents squishing *!*/-->
+<!--    }-->
+
+<!--    /* Marquee Container */-->
+<!--    .collaborations {-->
+<!--        overflow: hidden;-->
+<!--        white-space: nowrap;-->
+<!--        position: relative;-->
+<!--        margin: 1rem 0; /* Optional: Adds spacing */-->
+<!--    }-->
+
+<!--    /* Marquee Content */-->
+<!--    .marquee {-->
+<!--        display: inline-block;-->
+<!--        animation: marquee 40s linear infinite;-->
+<!--        padding-right: 50px; /* Small gap between duplicates */-->
+<!--    }-->
+
+<!--    /* Animation: Moves left, then loops seamlessly */-->
+<!--    @keyframes marquee {-->
+<!--        0% {-->
+<!--            transform: translateX(0);-->
+<!--        }-->
+<!--        100% {-->
+<!--            transform: translateX(-50%);-->
+<!--        }-->
+<!--    }/* -50% because content is duplicated */-->
+
+<!--</style>-->
+
+<!--<div class="win98-container">-->
+
+<!--&lt;!&ndash; WINDOWS 98 WINDOW FRAME &ndash;&gt;-->
+<!--    <div class="win98-window">-->
+<!--    &lt;!&ndash; TITLEBAR &ndash;&gt;-->
+<!--    <div class="win98-titlebar">-->
+<!--        <span>Mrira.exe</span>-->
+<!--        <div class="win98-titlebar-controls">-->
+<!--            <div class="win98-btn minimize">_</div>-->
+<!--            <div class="win98-btn maximize">□</div>-->
+<!--            <div class="win98-btn close">X</div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; TERMINAL CONTENT &ndash;&gt;-->
+<!--    <div class="win98-content" style="height: 400px; overflow-y: auto;">-->
+<!--        &lt;!&ndash; SECTION 1: INTRO &ndash;&gt;-->
+<!--        <section class="intro">-->
+<!--            <p class="win98" style="font-size: 1.4rem">Microsoft Windows 98 [Version 4.10.22220]</p>-->
+<!--            <p class="win98">C:\Users\Mrira\Downloads> Executing "Mrira.exe"</p>-->
+<!--            <p class="win98">> Loading...</p>-->
+<!--            <h1 class="win98">Welcome to Mrira</h1>-->
+<!--            <h3>A Creative Product Studio</h3>-->
+<!--            <br>-->
+<!--            <ul class="cli-list">-->
+<!--                <li>We create software from 0 to a 100 with our partners.</li>-->
+<!--                <li>We assist with idea creation, UI/UX design, and even digital marketing</li>-->
+<!--                <li>We are a small, agile and lean team spanning across the globe</li>-->
+<!--                <li>We go big or we go home. No in-betweens baby. Excellence only</li>-->
+<!--                <li>We didn't choose software development. It chose us</li>-->
+<!--            </ul>-->
+
+
+<!--        </section>-->
+
+<!--        &lt;!&ndash; SECTION 2: COLLABORATIONS &ndash;&gt;-->
+<!--        <section>-->
+<!--            <h2>Collaborations</h2>-->
+<!--            <h3> Mrira's team members have collaborated with:</h3>-->
+<!--            <br>-->
+<!--            <div class="collaborations">-->
+<!--                <div class="marquee">-->
+<!--                    > UNICEF  > ACCENTURE > SAP > INTEL > SIEMENS > DEUTSCHE_BANK > BOSCH > CONTINENTAL > RABOBANK > HP > BARCLAYS > VALEO > WELLS_FARGO > DELL &lt;!&ndash; Original &ndash;&gt;-->
+<!--                    > UNICEF  > ACCENTURE > SAP > INTEL > SIEMENS > DEUTSCHE_BANK > BOSCH > CONTINENTAL > RABOBANK > HP > BARCLAYS > VALEO > WELLS_FARGO > DELL &lt;!&ndash; Duplicate &ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+
+<!--        &lt;!&ndash; SECTION 3: WHAT MAKES US UNIQUE &ndash;&gt;-->
+<!--        <section>-->
+<!--            <h2>What makes Mrira unique?</h2>-->
+<!--            <ul class="cli-list">-->
+<!--                <li></li>-->
+<!--                <li> <b> We craft striking interfaces. </b> Thoughtful design and standout visuals are baked into every product we build</li>-->
+<!--                <li> <b> We build real, fully functioning software. </b> MVPs, prototypes, full apps — not decks, mockups, or fluff.</li>-->
+<!--                <li> <b> We think like partners. </b> From idea to launch, we help shape the product and the brand behind it</li>-->
+<!--                <li> <b> We let our work do the talking. </b> Our work is live, loud, and proof of what we can build for you</li>-->
+<!--            </ul>-->
+<!--        </section>-->
+
+<!--        &lt;!&ndash; SECTION 4: PORTFOLIO &ndash;&gt;-->
+<!--        <section>-->
+<!--            <h2>Portfolio</h2>-->
+<!--            <div class="portfolio-grid">-->
+<!--                <div class="portfolio-item">-->
+<!--                    <a href="http://localhost:63342/portfolio/fitness-app/index.html?_ijt=9ggi63c3l7gdvefmrr4ugs2j0l&_ij_reload=RELOAD_ON_SAVE"-->
+<!--                       target="_blank" rel="noopener noreferrer">-->
+<!--                        <video autoplay loop muted playsinline width="400">-->
+<!--                            <source src="{{ "videos/FitTrackPro-edited.mp4" | relURL }}" type="video/mp4">-->
+<!--                            Sorry, your browser does not support the video tag.-->
+<!--                        </video>-->
+<!--                        <span> Fitness tracking demo app</span>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="portfolio-item">-->
+<!--                    <a href = "http://localhost:63342/portfolio/investment/index.html?_ijt=9ggi63c3l7gdvefmrr4ugs2j0l&_ij_reload=RELOAD_ON_SAVE"-->
+<!--                       target="_blank" rel="noopener noreferrer">-->
+<!--                        <video autoplay loop muted playsinline width="400">-->
+<!--                            <source src = "{{ "videos/quantumInvest-edited.mp4" | relURL }}" type="video/mp4">-->
+<!--                            Sorry, your browser does not support the video tag-->
+<!--                        </video>-->
+<!--                        <span>Investing style demo app</span>-->
+<!--                    </a>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+
+<!--        <div class="contact-form">-->
+<!--            <h2>Contact</h2>-->
+<!--            <form action="https://formsubmit.co/meniman98@gmail.com" method="POST">-->
+
+<!--                <input type="text" name="name" placeholder="What's your name?" required>-->
+
+<!--                <input type="email" name="email" placeholder="Your e-mail please" required>-->
+
+<!--                <textarea name="message" placeholder="How can we help?" rows="4" required></textarea>-->
+
+<!--                &lt;!&ndash; Honeypot field (invisible to users, traps bots) &ndash;&gt;-->
+<!--                <input type="text" name="_honey" style="display:none">-->
+
+<!--                &lt;!&ndash; Disable FormSubmit's CAPTCHA &ndash;&gt;-->
+<!--                <input type="hidden" name="_captcha" value="false">-->
+
+<!--                &lt;!&ndash; Optional: Redirect to thank-you page after submit &ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="hidden" name="_next" value="http://localhost:1313/">&ndash;&gt;-->
+
+<!--                <button type="submit">Submit</button>-->
+<!--            </form>-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--    <div class="win98-taskbar">-->
+<!--        <div class="start-button">-->
+<!--            <img src={{ "images/windows98-logo.png" | relURL }}>-->
+<!--            Start-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Quick launch icons area (right of start button) &ndash;&gt;-->
+<!--        <div class="quick-launch">-->
+<!--            <div class="quick-launch-item"><img src="{{ "images/internet-explorer.png" | relURL }}"></div>-->
+<!--            <div class="quick-launch-item"><img src="{{ "images/my-documents.png" | relURL }}"></div>-->
+<!--            <div class="quick-launch-item"><img src="{{ "images/outlook-express.png" | relURL }}"></div>-->
+<!--            <div class="quick-launch-item"><img src="{{ "images/show-desktop.png" | relURL }}"></div>-->
+<!--        </div>-->
+
+<!--        <div class="taskbar-programs">-->
+<!--            <div class="taskbar-item active">Mrira.exe</div>-->
+<!--            <div class="taskbar-item">Document Explorer</div>-->
+<!--            <div class="taskbar-item">Internet Explorer</div>-->
+<!--        </div>-->
+
+<!--        <div class="taskbar-clock">-->
+<!--            <div class="clock-icons">-->
+<!--                <img src="{{ "images/windows98-calendar.png" | relURL }}">-->
+<!--                <img src="{{ "images/windows98-loudspeaker.png" | relURL }}">-->
+<!--            </div>-->
+<!--            <div id="win98-clock">-->
+<!--                <div class="clock-time">4:25PM</div>-->
+<!--                <div class="clock-date">08/05/2025</div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</div>-->
 
 
 
