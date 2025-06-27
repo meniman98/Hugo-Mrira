@@ -2,6 +2,7 @@
 baseurl = "https://mrira.nl"
 languageCode = "en-us"
 title = "Mrira"
+theme = ""
 
 # Theme i18n support
 # Available values: en, fr, id, ja, ko, pt-br, zh-cn, zh-tw, es, de, nl, it, th, el, uk, ar
@@ -18,4 +19,4 @@ disqusShortname = "Mrira"
 pagerSize = 5
 
 [build]
-ignoreFiles = ["themes/stack/layouts/index.html"]  # Force use of your custom file
+#ignoreFiles = ["themes/stack/layouts/index.html"]  # Force use of your custom file
