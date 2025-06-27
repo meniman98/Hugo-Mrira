@@ -16,3 +16,6 @@ disqusShortname = "Mrira"
 
 [pagination]
 pagerSize = 5
+
+[build]
+ignoreFiles = ["themes/stack/layouts/index.html"]  # Force use of your custom file
